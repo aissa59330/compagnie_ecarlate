@@ -45,18 +45,15 @@ body{
 
 a{color:inherit;text-decoration:none;}
 
-/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
 }
 
-/* ---------- Focus visibility ---------- */
 a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
   outline:2px solid var(--scarlet-bright);
   outline-offset:3px;
 }
 
-/* ---------- Background tactical grid ---------- */
 .bg-grid{
   position:fixed;inset:0;
   z-index:0;
@@ -79,7 +76,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
   pointer-events:none;
 }
 
-/* ---------- Nav ---------- */
 .nav{
   position:fixed;top:0;left:0;right:0;
   z-index:100;
@@ -129,7 +125,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
 
 .nav-toggle{display:none;}
 
-/* ================= HERO ================= */
 .hero{
   position:relative;
   z-index:2;
@@ -317,7 +312,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
   50%{opacity:1;}
 }
 
-/* ================= SHARED SECTION UTILS ================= */
 .section{
   position:relative;
   z-index:2;
@@ -361,7 +355,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
 .reveal-delay-2{transition-delay:0.2s;}
 .reveal-delay-3{transition-delay:0.3s;}
 
-/* ================= LORE ================= */
 .lore{
   background:linear-gradient(180deg, var(--void) 0%, #0d0d10 50%, var(--void) 100%);
 }
@@ -474,7 +467,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
   border-right-color:var(--scarlet-bright);
 }
 
-/* ================= REGLEMENT ================= */
 .reglement{
   background:var(--void);
   position:relative;
@@ -578,7 +570,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
   font-size:0.9em;
 }
 
-/* ================= EFFECTIF / ROSTER ================= */
 .effectif{
   background:linear-gradient(180deg, var(--void) 0%, #0d0d10 50%, var(--void) 100%);
 }
@@ -602,6 +593,10 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
 .roster-card:hover{
   border-color:var(--scarlet);
   box-shadow:0 24px 50px -16px rgba(0,0,0,0.6), 0 0 36px -8px var(--scarlet-glow);
+}
+.roster-card:focus-visible{
+  outline:2px solid var(--scarlet-bright);
+  outline-offset:4px;
 }
 
 .roster-card-top{
@@ -684,64 +679,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
 }
 .roster-spec svg{width:13px;height:13px;color:var(--scarlet-bright);}
 
-.roster-holo{
-  position:absolute;
-  inset:0;
-  background:rgba(8,8,10,0.94);
-  border:1px solid var(--scarlet);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:24px;
-  opacity:0;
-  transform:translateZ(10px);
-  transition:opacity .35s ease;
-  pointer-events:none;
-}
-.roster-card:hover .roster-holo{
-  opacity:1;
-}
-.roster-holo-title{
-  font-family:var(--font-mono);
-  font-size:0.7rem;
-  letter-spacing:0.2em;
-  color:var(--scarlet-bright);
-  text-transform:uppercase;
-  margin-bottom:16px;
-  display:flex;align-items:center;gap:8px;
-}
-.roster-holo-title::before{
-  content:'';
-  width:8px;height:8px;
-  background:var(--scarlet-bright);
-  box-shadow:0 0 10px var(--scarlet-bright);
-  animation:holoBlink 1.4s ease-in-out infinite;
-}
-@keyframes holoBlink{
-  0%,100%{opacity:1;}
-  50%{opacity:0.3;}
-}
-.roster-stat{
-  display:flex;
-  justify-content:space-between;
-  font-family:var(--font-mono);
-  font-size:0.78rem;
-  color:var(--bone);
-  margin-bottom:9px;
-  padding-bottom:9px;
-  border-bottom:1px dashed rgba(196,30,44,0.25);
-}
-.roster-stat span:first-child{color:var(--bone-dim);}
-.roster-stat span:last-child{color:var(--scarlet-bright);}
-.roster-holo-feat{
-  margin-top:10px;
-  font-size:0.85rem;
-  line-height:1.5;
-  color:var(--bone-dim);
-  font-style:normal;
-}
-.roster-holo-feat strong{color:var(--scarlet-bright);font-family:var(--font-mono);font-weight:400;font-size:0.7rem;letter-spacing:0.1em;display:block;margin-bottom:4px;text-transform:uppercase;}
-
 .roster-card-glow{
   position:absolute;inset:0;
   background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(196,30,44,0.15), transparent 60%);
@@ -751,7 +688,212 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
 }
 .roster-card:hover .roster-card-glow{opacity:1;}
 
-/* ================= FOOTER ================= */
+.roster-hint{
+  position:absolute;
+  top:14px;right:14px;
+  width:30px;height:30px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(196,30,44,0.5);
+  background:rgba(8,8,10,0.6);
+  color:var(--scarlet-bright);
+  opacity:0;
+  transform:translateY(-4px);
+  transition:opacity .3s, transform .3s;
+  pointer-events:none;
+  z-index:2;
+}
+.roster-hint svg{width:14px;height:14px;}
+.roster-card:hover .roster-hint{opacity:1;transform:translateY(0);}
+
+.soldier-modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:5vh 20px;
+  background:rgba(6,6,8,0.82);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .3s ease, visibility 0s linear .3s;
+}
+.soldier-modal-overlay.is-open{
+  opacity:1;
+  visibility:visible;
+  transition:opacity .3s ease, visibility 0s linear 0s;
+}
+
+.soldier-modal{
+  position:relative;
+  width:100%;
+  max-width:480px;
+  max-height:88vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--panel);
+  border:1px solid var(--scarlet);
+  box-shadow:0 30px 70px -20px rgba(0,0,0,0.7), 0 0 60px -10px var(--scarlet-glow);
+  transform:translateY(24px) scale(0.97);
+  opacity:0;
+  transition:transform .35s cubic-bezier(.16,.84,.44,1), opacity .35s ease;
+}
+.soldier-modal-overlay.is-open .soldier-modal{
+  transform:translateY(0) scale(1);
+  opacity:1;
+}
+
+.soldier-modal-photo{
+  position:relative;
+  flex-shrink:0;
+  height:260px;
+  overflow:hidden;
+  background:radial-gradient(circle at 50% 30%, #2a2c32, #16171a);
+  border-bottom:1px solid var(--scarlet);
+}
+.soldier-modal-photo img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 15%;
+  filter:grayscale(0.15) contrast(1.1) brightness(0.92);
+}
+.soldier-modal-photo::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(10,10,12,0) 45%, rgba(10,10,12,0.95) 100%);
+}
+
+.soldier-modal-close{
+  position:absolute;
+  top:14px;right:14px;
+  width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(8,8,10,0.75);
+  border:1px solid var(--scarlet);
+  color:var(--bone);
+  cursor:pointer;
+  z-index:3;
+  transition:background .25s, color .25s, transform .25s;
+}
+.soldier-modal-close:hover{
+  background:var(--scarlet);
+  color:var(--void);
+  transform:rotate(90deg);
+}
+.soldier-modal-close svg{width:18px;height:18px;}
+
+.soldier-modal-idtag{
+  position:absolute;
+  bottom:14px;left:18px;
+  z-index:2;
+  font-family:var(--font-mono);
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  color:var(--scarlet-bright);
+  text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+}
+.soldier-modal-idtag .id-dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--scarlet-bright);
+  box-shadow:0 0 8px var(--scarlet-bright);
+  display:inline-block;
+}
+
+.soldier-modal-body{
+  padding:26px 28px 30px;
+  overflow-y:auto;
+}
+.soldier-modal-rank{
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  letter-spacing:0.15em;
+  color:var(--scarlet-bright);
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.soldier-modal-name{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.7rem;
+  letter-spacing:0.02em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.soldier-modal-spec{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:0.85rem;
+  font-weight:600;
+  letter-spacing:0.04em;
+  color:var(--bone-dim);
+  text-transform:uppercase;
+  border:1px solid var(--steel);
+  padding:6px 12px;
+  margin-bottom:20px;
+}
+.soldier-modal-spec svg{width:13px;height:13px;color:var(--scarlet-bright);}
+
+.soldier-modal-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--steel);
+  border:1px solid var(--steel);
+  margin-bottom:22px;
+}
+.soldier-modal-stat{
+  background:var(--panel-2);
+  padding:12px 10px;
+  text-align:center;
+}
+.soldier-modal-stat .val{
+  font-family:var(--font-mono);
+  font-size:1.05rem;
+  color:var(--scarlet-bright);
+  margin-bottom:3px;
+}
+.soldier-modal-stat .lbl{
+  font-family:var(--font-mono);
+  font-size:0.62rem;
+  letter-spacing:0.1em;
+  color:var(--bone-dim);
+  text-transform:uppercase;
+}
+
+.soldier-modal-section-label{
+  font-family:var(--font-mono);
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  color:var(--scarlet-bright);
+  text-transform:uppercase;
+  margin-bottom:8px;
+  display:flex;align-items:center;gap:10px;
+}
+.soldier-modal-section-label::before{
+  content:'';
+  width:18px;height:1px;
+  background:var(--scarlet-bright);
+}
+
+.soldier-modal-story{
+  font-size:1rem;
+  line-height:1.7;
+  color:var(--bone-dim);
+}
+
+body.modal-open{overflow:hidden;}
+
+@media (max-width:520px){
+  .soldier-modal{max-width:100%;}
+  .soldier-modal-photo{height:210px;}
+  .soldier-modal-name{font-size:1.4rem;}
+}
+
 .footer{
   position:relative;
   z-index:2;
@@ -851,19 +993,19 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
       <div class="file-card reveal">
         <div class="file-card-head"><span>Fichier 7-A // Fondation</span><span class="stamp">Déclassifié</span></div>
         <h3>Naissance de l'Escouade</h3>
-        <p data-typed>Identifiés pour leur potentiel physiologique optimal, les spécimens composant cette escouade ont été retirés des cuves de clonage avant même d'entamer le cursus de conditionnement standard. Placés sous la juridiction directe de stratèges de la République, ils ont été intégrés à un programme de formation atypique. Éduqués et formés en vase clos depuis leur plus jeune âge, ils ont assimilé une doctrine militaire unique, intégralement calquée sur les traités tactiques et les coutumes martiales de l'armée de l'Ancienne République. L'objectif stratégique de cette initiative était clair : concevoir une troupe lourde et puissante, couplant l'ingénierie génétique moderne à la redoutable efficacité des légions d'antan.</p>
+        <p data-typed>Extraits de leurs cuves de clonage dès leurs premiers souffles de vie, ces soldats n'ont jamais connu le conditionnement standard de l'armée régulière. Isolés de leurs frères d'armes, ils ont été choisis pour un dessein bien plus grand : devenir les héritiers d'une tradition millénaire. Façonnés en secret, ils ont été éduqués selon les coutumes ancestrales et la doctrine martiale de l'Ancienne République. Ainsi est née l'Escouade Écarlate, une fraternité de sang et d'acier, ressuscitant l'esprit des légions mythiques d'autrefois.</p>
       </div>
 
       <div class="file-card reveal">
         <div class="file-card-head"><span>Fichier 7-B // Doctrine</span><span class="stamp">Niveau 2</span></div>
         <h3>Une discipline de fer</h3>
-        <p data-typed>  Leur encadrement s'est distingué par une exigence martiale absolue. Rejetant les simulations virtuelles classiques au profit d'un entraînement en conditions réelles prolongées, cette rigueur d'un autre âge a forgé une chaîne de commandement inébranlable. La cohésion de l'unité est totale, rendant ces opérateurs insensibles à la pression des zones de combat denses. Classifiée comme "force de rupture", l'escouade exécute des manœuvres d'infanterie lourde avec une précision chirurgicale. Déployés sur les théâtres de haute intensité, ils ont pour directive d'enfoncer le front et de disloquer les formations ennemies par des frappes coordonnées et un impact cinétique maximal. </p>
+        <p data-typed> Conditionnés et formés depuis leur plus tendre enfance, ils ont enduré un entraînement d'une brutalité assumée, calqué sur les exigences impitoyables des anciens âges. Cette rigueur absolue, gravée dans leur esprit comme dans leur chair, les a forgés en un véritable bélier tactique. Déployés sur les théâtres d'opérations les plus hostiles, ils agissent avec une synchronisation parfaite, opérant comme une force de rupture inarrêtable, capable de briser n'importe quel blocus ennemi. </p>
       </div>
 
       <div class="file-card reveal">
         <div class="file-card-head"><span>Fichier 7-C // Réputation</span><span class="stamp">Confidentiel</span></div>
         <h3>L'ombre écarlate</h3>
-        <p data-typed>Sur le plan matériel, ces opérateurs évoluent revêtus d'armures lourdes de classe assaut, de teintes grise et blanche, dont le placage est optimisé pour maximiser la survie face aux tirs d'artillerie légère. L'indicatif opérationnel "Ombre Écarlate" ne fait donc pas référence à leur équipement, mais à leur signature tactique : une puissance de feu concentrée d'une telle intensité qu'elle sature les lignes ennemies d'une lueur rougeoyante. Spécialistes du démantèlement des blindages droïdes et de la sécurisation en milieu hostile, ils frappent lourdement, assurant une progression continue. Dans leurs rapports de combat, l'Ombre Écarlate désigne le sillage de destruction totale et les carcasses fumantes qu'ils laissent inévitablement derrière eux</p>
+        <p data-typed>Sur la ligne de front, ils sont les hérauts de la destruction. Revêtus d'épaisses armures blindées frappées du rouge sang, ultime hommage aux héros du passé, ils encaissent les tirs lourds sans ciller avant de riposter avec une puissance de feu dévastatrice. Terreur des bataillons droïdes, ils s'abattent sur les objectifs critiques avec une furie méthodique. Là où ils passent, la machine recule, et il ne reste sur le champ de bataille que les carcasses fumantes et la silhouette menaçante de l'ombre écarlate.</p>
       </div>
     </div>
   </div>
@@ -962,10 +1104,16 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
 
   <div class="roster-grid" id="rosterGrid">
 
-    <article class="roster-card reveal" data-rank="Capitaine" data-name="Corvus" data-spec="Commandement" data-id="ECR-001" data-status="Actif" data-missions="84" data-precision="98%" data-feat="Premier clone à reçevoir une formation avancée en stratégie militaire et en commandement tactique par l'ordre Jedi.">
+    <article class="roster-card reveal" tabindex="0" role="button"
+      data-rank="Adjudant (Propriétaire)" data-name="Björn" data-spec="Assaut et démolition" data-id="ECR-7739"
+      data-status="Actif" data-missions="84" data-precision="98%" data-img="krieg.png" data-imgpos="50% 12%"
+      data-story="Premier clone à reçevoir une formation avancée en stratégie militaire et en commandement tactique par l'ordre Jedi. Björn dirige l'Escouade Écarlate avec une rigueur sans faille, héritée des plus grands maîtres de guerre de l'Ancienne République. Son sens du commandement et son sang-froid légendaire font de lui le pilier sur lequel repose chaque opération de l'unité.">
       <div class="roster-card-glow"></div>
+      <div class="roster-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"/></svg>
+      </div>
       <div class="roster-card-top"><span><span class="id-dot"></span>ECR-7739</span><span>ACTIF</span></div>
-      <div class="roster-avatar"><img src="krieg.png" style="object-position:50% 12%;" alt="Capitaine Corvus"></div>
+      <div class="roster-avatar"><img src="krieg.png" style="object-position:50% 12%;" alt="Björn"></div>
       <div class="roster-body">
         <p class="roster-rank">Adjudant (Propriétaire)</p>
         <h3 class="roster-name">Björn</h3>
@@ -974,13 +1122,18 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
           Assaut et démolition
         </span>
       </div>
-      <div class="roster-holo"></div>
     </article>
 
-    <article class="roster-card reveal" data-rank="Lieutenant" data-name="Ashen" data-spec="Reconnaissance" data-id="ECR-014" data-status="Actif" data-missions="61" data-precision="93%" data-feat="Commandant du Bataillon Wolfpack et du Corps Stellaire de retour pour tout détruire sur son passage.">
+    <article class="roster-card reveal" tabindex="0" role="button"
+      data-rank="Caporal (Vétérant Haut gradé de la république)" data-name="Vortex" data-spec="Commandement et stratégie" data-id="ECR-7522"
+      data-status="Actif" data-missions="61" data-precision="93%" data-img="vortex.jpg" data-imgpos="23% 12%"
+      data-story="Commandant du Bataillon Wolfpack et du Corps Stellaire, de retour pour tout détruire sur son passage. Vortex porte le poids de campagnes innombrables et reste l'un des vétérans les plus respectés de la République. Sa lecture du champ de bataille permet à l'Escouade d'anticiper les manœuvres ennemies avant même qu'elles ne soient lancées.">
       <div class="roster-card-glow"></div>
+      <div class="roster-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"/></svg>
+      </div>
       <div class="roster-card-top"><span><span class="id-dot"></span>ECR-7522</span><span>ACTIF</span></div>
-      <div class="roster-avatar"><img src="vortex.jpg" style="object-position:23% 12%;" alt="Lieutenant Ashen"></div>
+      <div class="roster-avatar"><img src="vortex.jpg" style="object-position:23% 12%;" alt="Vortex"></div>
       <div class="roster-body">
         <p class="roster-rank">Caporal (Vétérant Haut gradé de la république)</p>
         <h3 class="roster-name">Vortex</h3>
@@ -989,13 +1142,18 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
           Commandement et stratégie
         </span>
       </div>
-      <div class="roster-holo"></div>
     </article>
 
-    <article class="roster-card reveal" data-rank="Sergent" data-name="Marrow" data-spec="Sniper" data-id="ECR-027" data-status="Actif" data-missions="73" data-precision="99%" data-feat="Détentrice du record de la Compagnie : tir confirmé à 1,4 km.">
+    <article class="roster-card reveal" tabindex="0" role="button"
+      data-rank="Clone Trooper" data-name="Anshluss" data-spec="Sniper et Exterminateur" data-id="ECR-1938"
+      data-status="Actif" data-missions="73" data-precision="99%" data-img="anshluss.png" data-imgpos="38% 12%"
+      data-story="Détentrice du record de la Compagnie : un tir confirmé à 1,4 km. Postée en hauteur, Anshluss observe le champ de bataille avec une patience inébranlable avant de frapper avec une précision chirurgicale. Aucune cible n'échappe longtemps à sa lunette.">
       <div class="roster-card-glow"></div>
+      <div class="roster-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"/></svg>
+      </div>
       <div class="roster-card-top"><span><span class="id-dot"></span>ECR-1938</span><span>ACTIF</span></div>
-      <div class="roster-avatar"><img src="anshluss.png" style="object-position:38% 12%;" alt="Sergent Marrow"></div>
+      <div class="roster-avatar"><img src="anshluss.png" style="object-position:38% 12%;" alt="Anshluss"></div>
       <div class="roster-body">
         <p class="roster-rank">Clone Trooper</p>
         <h3 class="roster-name">Anshluss</h3>
@@ -1004,13 +1162,18 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
           Sniper et Exterminateur
         </span>
       </div>
-      <div class="roster-holo"></div>
     </article>
 
-    <article class="roster-card reveal" data-rank="Caporal" data-name="Talon" data-spec="Assaut" data-id="ECR-033" data-status="Actif" data-missions="58" data-precision="89%" data-feat="Toujours en première ligne lors des assauts frontaux.">
+    <article class="roster-card reveal" tabindex="0" role="button"
+      data-rank="Clone Trooper" data-name="Crimson" data-spec="Assaut et Soutien Lourd" data-id="ECR-2275"
+      data-status="Actif" data-missions="58" data-precision="89%" data-img="kardiel.png" data-imgpos="50% 12%"
+      data-story="Toujours en première ligne lors des assauts frontaux. Crimson ouvre la marche sans jamais hésiter, encaissant le premier choc pour permettre au reste de l'escouade d'avancer. Sa témérité au combat est aussi redoutée par l'ennemi que respectée par ses frères d'armes.">
       <div class="roster-card-glow"></div>
+      <div class="roster-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"/></svg>
+      </div>
       <div class="roster-card-top"><span><span class="id-dot"></span>ECR-2275</span><span>ACTIF</span></div>
-      <div class="roster-avatar"><img src="kardiel.png" style="object-position:50% 12%;" alt="Caporal Talon"></div>
+      <div class="roster-avatar"><img src="kardiel.png" style="object-position:50% 12%;" alt="Crimson"></div>
       <div class="roster-body">
         <p class="roster-rank">Clone Trooper</p>
         <h3 class="roster-name">Crimson</h3>
@@ -1019,13 +1182,18 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
           Assaut et Soutien Lourd
         </span>
       </div>
-      <div class="roster-holo"></div>
     </article>
 
-    <article class="roster-card reveal" data-rank="Caporal" data-name="Brennan" data-spec="Soutien lourd" data-id="ECR-039" data-status="Actif" data-missions="65" data-precision="91%" data-feat="Porte le minigun de l'escouade depuis 40 missions sans relève.">
+    <article class="roster-card reveal" tabindex="0" role="button"
+      data-rank="Classifié" data-name="Classifié" data-spec="Classifié" data-id="ECR-XXXX"
+      data-status="Actif" data-missions="65" data-precision="91%" data-img="fond.png" data-imgpos="62% 12%"
+      data-story="Porte le minigun de l'escouade depuis 40 missions sans relève. Son identité reste classifiée par ordre du commandement, mais sa présence sur le terrain est immédiatement reconnaissable au grondement continu de son arme de soutien lourd.">
       <div class="roster-card-glow"></div>
+      <div class="roster-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"/></svg>
+      </div>
       <div class="roster-card-top"><span><span class="id-dot"></span>ECR-XXXX</span><span>ACTIF</span></div>
-      <div class="roster-avatar"><img src="fond.png" style="object-position:62% 12%;" alt="Caporal Brennan"></div>
+      <div class="roster-avatar"><img src="fond.png" style="object-position:62% 12%;" alt="Soldat classifié"></div>
       <div class="roster-body">
         <p class="roster-rank">Classifié</p>
         <h3 class="roster-name">Classifié</h3>
@@ -1034,13 +1202,18 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
           Classifié
         </span>
       </div>
-      <div class="roster-holo"></div>
     </article>
 
-    <article class="roster-card reveal" data-rank="Soldat" data-name="Vesper" data-spec="Médecin" data-id="ECR-052" data-status="Actif" data-missions="47" data-precision="100%" data-feat="Aucune perte de soldat sous ses soins en mission.">
+    <article class="roster-card reveal" tabindex="0" role="button"
+      data-rank="Classifié" data-name="Classifié" data-spec="Classifié" data-id="ECR-XXXX"
+      data-status="Actif" data-missions="47" data-precision="100%" data-img="fond.png" data-imgpos="76% 12%"
+      data-story="Aucune perte de soldat sous ses soins en mission. Discret mais toujours présent au moment critique, ce médecin de terrain a sauvé plus de vies que n'importe quel autre membre de l'Escouade. Son identité reste classifiée par ordre du commandement.">
       <div class="roster-card-glow"></div>
+      <div class="roster-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"/></svg>
+      </div>
       <div class="roster-card-top"><span><span class="id-dot"></span>ECR-XXXX</span><span>ACTIF</span></div>
-      <div class="roster-avatar"><img src="fond.png" style="object-position:76% 12%;" alt="Soldat Vesper"></div>
+      <div class="roster-avatar"><img src="fond.png" style="object-position:76% 12%;" alt="Soldat classifié"></div>
       <div class="roster-body">
         <p class="roster-rank">Classifié</p>
         <h3 class="roster-name">Classifié</h3>
@@ -1049,13 +1222,18 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
           Classifié
         </span>
       </div>
-      <div class="roster-holo"></div>
     </article>
 
-    <article class="roster-card reveal" data-rank="Soldat" data-name="Garrick" data-spec="Démolition" data-id="ECR-058" data-status="Actif" data-missions="39" data-precision="87%" data-feat="A neutralisé trois positions blindées à l'Avant-poste Theta.">
+    <article class="roster-card reveal" tabindex="0" role="button"
+      data-rank="Classifié" data-name="Classifié" data-spec="Classifié" data-id="ECR-XXXX"
+      data-status="Actif" data-missions="39" data-precision="87%" data-img="fond.png" data-imgpos="90% 12%"
+      data-story="A neutralisé trois positions blindées à l'Avant-poste Theta. Spécialiste en démolition, ce soldat agit dans l'ombre pour ouvrir la voie à l'escouade en faisant tomber les défenses ennemies les plus solides. Son identité reste classifiée par ordre du commandement.">
       <div class="roster-card-glow"></div>
+      <div class="roster-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"/></svg>
+      </div>
       <div class="roster-card-top"><span><span class="id-dot"></span>ECR-XXXX</span><span>ACTIF</span></div>
-      <div class="roster-avatar"><img src="fond.png" style="object-position:90% 12%;" alt="Soldat Garrick"></div>
+      <div class="roster-avatar"><img src="fond.png" style="object-position:90% 12%;" alt="Soldat classifié"></div>
       <div class="roster-body">
         <p class="roster-rank">Classifié</p>
         <h3 class="roster-name">Classifié</h3>
@@ -1064,7 +1242,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
           Classifié
         </span>
       </div>
-      <div class="roster-holo"></div>
     </article>
 
   </div>
@@ -1082,12 +1259,50 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
   <div>© Dossier tactique — Usage interne uniquement</div>
 </footer>
 
+<!-- ===== Soldier popup modal ===== -->
+<div class="soldier-modal-overlay" id="soldierModalOverlay">
+  <div class="soldier-modal" role="dialog" aria-modal="true" aria-labelledby="soldierModalName">
+    <div class="soldier-modal-photo">
+      <img id="soldierModalImg" src="" alt="">
+      <div class="soldier-modal-idtag"><span class="id-dot"></span><span id="soldierModalId"></span></div>
+      <button class="soldier-modal-close" id="soldierModalClose" aria-label="Fermer la fiche">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+    </div>
+    <div class="soldier-modal-body">
+      <p class="soldier-modal-rank" id="soldierModalRank"></p>
+      <h3 class="soldier-modal-name" id="soldierModalName"></h3>
+      <span class="soldier-modal-spec">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg>
+        <span id="soldierModalSpec"></span>
+      </span>
+
+      <div class="soldier-modal-stats">
+        <div class="soldier-modal-stat">
+          <div class="val" id="soldierModalStatus"></div>
+          <div class="lbl">Statut</div>
+        </div>
+        <div class="soldier-modal-stat">
+          <div class="val" id="soldierModalMissions"></div>
+          <div class="lbl">Missions</div>
+        </div>
+        <div class="soldier-modal-stat">
+          <div class="val" id="soldierModalPrecision"></div>
+          <div class="lbl">Précision</div>
+        </div>
+      </div>
+
+      <p class="soldier-modal-section-label">Historique</p>
+      <p class="soldier-modal-story" id="soldierModalStory"></p>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   "use strict";
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Nav scroll state ---------- */
   var nav = document.getElementById('mainNav');
   function onScroll(){
     if(window.scrollY > 40){ nav.classList.add('scrolled'); }
@@ -1096,7 +1311,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
   document.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 
-  /* ---------- Scroll reveal ---------- */
   var revealEls = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
@@ -1112,7 +1326,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
     revealEls.forEach(function(el){ el.classList.add('is-visible'); });
   }
 
-  /* ---------- Lore file cards: stagger reveal delay ---------- */
   document.querySelectorAll('.lore-files .file-card').forEach(function(el, i){
     el.style.transitionDelay = (i * 0.15) + 's';
   });
@@ -1120,7 +1333,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
     el.style.transitionDelay = Math.min(i * 0.08, 0.4) + 's';
   });
 
-  /* ---------- Typewriter effect for lore text ---------- */
   function typeText(el){
     var full = el.getAttribute('data-full');
     el.classList.add('typed','typing');
@@ -1155,9 +1367,7 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
     }, {threshold:0.4});
     typedParas.forEach(function(p){ typeIO.observe(p); });
   }
-  /* if reduced motion, leave full text as-is (already in DOM) */
 
-  /* ---------- Accordion ---------- */
   var triggers = document.querySelectorAll('.acc-trigger');
   triggers.forEach(function(btn){
     var panel = document.getElementById(btn.getAttribute('aria-controls'));
@@ -1169,7 +1379,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
         panel.style.maxHeight = '0px';
       }
     }
-    // init state from markup
     setOpen(btn.getAttribute('aria-expanded') === 'true');
 
     btn.addEventListener('click', function(){
@@ -1177,7 +1386,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
       setOpen(!isOpen);
     });
   });
-  // Recalc open panel heights on resize
   window.addEventListener('resize', function(){
     triggers.forEach(function(btn){
       if(btn.getAttribute('aria-expanded') === 'true'){
@@ -1187,24 +1395,6 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
     });
   });
 
-  /* ---------- Roster: build holo content from data attrs ---------- */
-  document.querySelectorAll('.roster-card').forEach(function(card){
-    var holo = card.querySelector('.roster-holo');
-    var name = card.getAttribute('data-name');
-    var id = card.getAttribute('data-id');
-    var missions = card.getAttribute('data-missions');
-    var precision = card.getAttribute('data-precision');
-    var status = card.getAttribute('data-status');
-    var feat = card.getAttribute('data-feat');
-    holo.innerHTML =
-      '<div class="roster-holo-title">Holo-fiche · ' + id + '</div>' +
-      '<div class="roster-stat"><span>Statut</span><span>' + status + '</span></div>' +
-      '<div class="roster-stat"><span>Missions menées</span><span>' + missions + '</span></div>' +
-      '<div class="roster-stat"><span>Précision</span><span>' + precision + '</span></div>' +
-      '<div class="roster-holo-feat"><strong>Fait d\'armes</strong>' + feat + '</div>';
-  });
-
-  /* ---------- Roster: 3D tilt on hover ---------- */
   if(!reduceMotion && window.matchMedia('(hover: hover)').matches){
     document.querySelectorAll('.roster-card').forEach(function(card){
       card.addEventListener('mousemove', function(e){
@@ -1222,6 +1412,69 @@ a:focus-visible, button:focus-visible, .acc-trigger:focus-visible{
       });
     });
   }
+
+  /* ---------- Soldier popup modal ---------- */
+  var overlay = document.getElementById('soldierModalOverlay');
+  var modalImg = document.getElementById('soldierModalImg');
+  var modalId = document.getElementById('soldierModalId');
+  var modalRank = document.getElementById('soldierModalRank');
+  var modalName = document.getElementById('soldierModalName');
+  var modalSpec = document.getElementById('soldierModalSpec');
+  var modalStatus = document.getElementById('soldierModalStatus');
+  var modalMissions = document.getElementById('soldierModalMissions');
+  var modalPrecision = document.getElementById('soldierModalPrecision');
+  var modalStory = document.getElementById('soldierModalStory');
+  var modalClose = document.getElementById('soldierModalClose');
+  var lastFocusedCard = null;
+
+  function openSoldierModal(card){
+    lastFocusedCard = card;
+
+    modalImg.src = card.getAttribute('data-img') || '';
+    modalImg.alt = card.getAttribute('data-name') || '';
+    modalImg.style.objectPosition = card.getAttribute('data-imgpos') || '50% 15%';
+
+    modalId.textContent = card.getAttribute('data-id') || '';
+    modalRank.textContent = card.getAttribute('data-rank') || '';
+    modalName.textContent = card.getAttribute('data-name') || '';
+    modalSpec.textContent = card.getAttribute('data-spec') || '';
+    modalStatus.textContent = card.getAttribute('data-status') || '';
+    modalMissions.textContent = card.getAttribute('data-missions') || '';
+    modalPrecision.textContent = card.getAttribute('data-precision') || '';
+    modalStory.textContent = card.getAttribute('data-story') || '';
+
+    overlay.classList.add('is-open');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeSoldierModal(){
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('modal-open');
+    if(lastFocusedCard){ lastFocusedCard.focus(); }
+  }
+
+  document.querySelectorAll('.roster-card').forEach(function(card){
+    card.addEventListener('click', function(){
+      openSoldierModal(card);
+    });
+    card.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openSoldierModal(card);
+      }
+    });
+  });
+
+  modalClose.addEventListener('click', closeSoldierModal);
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay){ closeSoldierModal(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && overlay.classList.contains('is-open')){
+      closeSoldierModal();
+    }
+  });
 
   /* ---------- Ambient ash particles ---------- */
   var canvas = document.getElementById('ash-canvas');
